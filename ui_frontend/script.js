@@ -56,19 +56,19 @@ function triggerCast() {
             <div style="color: #00FF99; margin-bottom: 10px; font-weight: bold; font-size: 14px;">[模块激活：角色矩阵] 灵体已就位：</div>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
                 <div style="text-align: center;">
-                    <img src="${encodeURI('../assets/（小青蛇精）@mmmmmmmm1.verdantnam.webp')}" style="width: 100%; max-width: 120px; border-radius: 8px; border: 1px solid rgba(0, 255, 153, 0.5);">
+                    <img src="${encodeURI('./assets/（小青蛇精）@mmmmmmmm1.verdantnam.webp')}" style="width: 100%; max-width: 120px; border-radius: 8px; border: 1px solid rgba(0, 255, 153, 0.5);">
                     <div style="margin-top: 5px; color: #fff; font-size: 14px;">小青</div>
                 </div>
                 <div style="text-align: center;">
-                    <img src="${encodeURI('../assets/（恶霸）@mmmmmmmm1.ironviperh.webp')}" style="width: 100%; max-width: 120px; border-radius: 8px; border: 1px solid rgba(0, 255, 153, 0.5);">
+                    <img src="${encodeURI('./assets/（恶霸）@mmmmmmmm1.ironviperh.webp')}" style="width: 100%; max-width: 120px; border-radius: 8px; border: 1px solid rgba(0, 255, 153, 0.5);">
                     <div style="margin-top: 5px; color: #fff; font-size: 14px;">龙虾</div>
                 </div>
                 <div style="text-align: center;">
-                    <img src="${encodeURI('../assets/（男主）@mmmmmmmm1r.webp')}" style="width: 100%; max-width: 120px; border-radius: 8px; border: 1px solid rgba(0, 255, 153, 0.5);">
+                    <img src="${encodeURI('./assets/（男主）@mmmmmmmm1r.webp')}" style="width: 100%; max-width: 120px; border-radius: 8px; border: 1px solid rgba(0, 255, 153, 0.5);">
                     <div style="margin-top: 5px; color: #fff; font-size: 14px;">张鹏</div>
                 </div>
                 <div style="text-align: center;">
-                    <img src="${encodeURI('../assets/（女主）@christinamontoya.webp')}" style="width: 100%; max-width: 120px; border-radius: 8px; border: 1px solid rgba(0, 255, 153, 0.5);">
+                    <img src="${encodeURI('./assets/（女主）@christinamontoya.webp')}" style="width: 100%; max-width: 120px; border-radius: 8px; border: 1px solid rgba(0, 255, 153, 0.5);">
                     <div style="margin-top: 5px; color: #fff; font-size: 14px;">白蛇</div>
                 </div>
             </div>

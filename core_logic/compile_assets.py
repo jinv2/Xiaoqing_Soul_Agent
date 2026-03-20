@@ -3,7 +3,8 @@ import os
 # Get the script's directory and the project root
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(current_dir)
-assets_dir = os.path.join(project_root, 'assets')
+# Source and output now point to ui_frontend/assets for Netlify compatibility
+assets_dir = os.path.join(project_root, 'ui_frontend', 'assets')
 
 def escape_js(content):
     # Escape backslashes first, then backticks, and also dollar signs for template literal safety

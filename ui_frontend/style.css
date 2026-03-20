@@ -8,7 +8,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    background-image: url('../assets/片头碗底青字幕_mini.webp');
+    background-image: url('./assets/片头碗底青字幕_mini.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
