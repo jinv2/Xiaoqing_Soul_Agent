@@ -19,6 +19,47 @@ window.addMessage = function(type, text, isHTML = false) {
     
     // Auto-scroll to bottom
     chatContainer.scrollTop = chatContainer.scrollHeight;
+
+    // TTS Logic Hook
+    if (type === 'agent' && !isHTML) {
+        window.speak(text);
+    }
+};
+
+// --- 1.1. Speech Synthesis Engine (TTS) ---
+const synth = window.speechSynthesis;
+let audioCtx = null;
+
+function initAudioContext() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+}
+
+window.speak = function(text) {
+    if (!synth) return;
+    
+    // Cancel any ongoing speech
+    synth.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'zh-CN';
+    utterance.rate = 0.9;
+    utterance.pitch = 1.0;
+
+    // Voice Selection
+    const voices = synth.getVoices();
+    const targetVoice = voices.find(v => v.name.includes('Microsoft Xiaoxiao') || v.name.includes('Google 普通话')) 
+                     || voices.find(v => v.lang === 'zh-CN');
+    
+    if (targetVoice) {
+        utterance.voice = targetVoice;
+    }
+
+    synth.speak(utterance);
 };
 
 // --- 2. Static Asset Infusion ---
@@ -43,11 +84,15 @@ function appendStaticData(type, data, isNovel = false) {
 // --- 3. Magic Button Overrides ---
 // --- 3. Business Logic Encapsulation (Trigger Matrix) ---
 function triggerNovel() {
-    appendStaticData('novel', typeof novelData !== 'undefined' ? novelData : '[错误] 小说内容未加载', true);
+    const text = typeof novelData !== 'undefined' ? novelData : '[错误] 小说内容未加载';
+    appendStaticData('novel', text, true);
+    window.speak("正在为您提取《碗底青》小说核心文本...");
 }
 
 function triggerLyrics() {
-    appendStaticData('lyrics', typeof lyricsData !== 'undefined' ? lyricsData : '[错误] 歌词内容未加载', false);
+    const text = typeof lyricsData !== 'undefined' ? lyricsData : '[错误] 歌词内容未加载';
+    appendStaticData('lyrics', text, false);
+    window.speak("正在同步灵境底层的歌词数据...");
 }
 
 function triggerCast() {
@@ -75,10 +120,13 @@ function triggerCast() {
         </div>
     `;
     addMessage('agent', castHTML, true);
+    window.speak("角色矩阵已激活，灵体已就位。");
 }
 
 function triggerVideo() {
-    addMessage('agent', '[视觉引擎激活] 渲染引擎已就绪，正在同步 Bilibili 外部信道...');
+    const text = '[视觉引擎激活] 渲染引擎已就绪，正在同步 Bilibili 外部信道...';
+    addMessage('agent', text);
+    window.speak(text);
     const videoModal = document.getElementById('video-modal');
     if (videoModal) videoModal.style.display = 'block';
 }
@@ -124,6 +172,7 @@ function routeCommand(text) {
 document.addEventListener('DOMContentLoaded', () => {
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
+    const voiceCallBtn = document.getElementById('voice-call-btn');
     const videoVisionBtn = document.getElementById('video-vision-btn');
     const charAvatar = document.getElementById('main-avatar');
 
@@ -139,23 +188,32 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (!isCommand) {
             setTimeout(() => {
-                addMessage('agent', "感知到主理人的意志，西湖底的算力正在波动...");
+                const fallbackText = "感知到主理人的意志，西湖底的算力正在波动...";
+                addMessage('agent', fallbackText);
             }, 1000);
         }
     }
 
-    if (sendBtn) sendBtn.addEventListener('click', handleSend);
+    if (sendBtn) sendBtn.addEventListener('click', () => { handleSend(); initAudioContext(); });
     if (userInput) {
         userInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 handleSend();
+                initAudioContext();
             }
         });
     }
 
+    // Audio Context Bypass (Bridge User Gesture)
+    [sendBtn, voiceCallBtn, videoVisionBtn].forEach(btn => {
+        if (btn) btn.addEventListener('click', initAudioContext);
+    });
+    document.querySelectorAll('.aui-btn').forEach(btn => {
+        btn.addEventListener('click', initAudioContext);
+    });
+
     // --- Web Speech API (Diagnostic Override) ---
-    const voiceCallBtn = document.getElementById('voice-call-btn');
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (!SpeechRecognition && voiceCallBtn) {
