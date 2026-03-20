@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《碗底青》灵境 | 小青 Soul Agent</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="aui-mode">
+    <div class="matrix-overlay"></div>
+
+    <!-- 1. Global Holographic Avatar (Locked to Background) -->
+    <div class="central-avatar">
+        <div class="char-frame">
+            <img src="../assets/xiaoqing_avatar_blurred.webp" alt="Xiaoqing Soul" id="main-avatar"
+                class="xiaoqing-spirit">
+        </div>
+        <div class="aui-status">灵境同步中...</div>
+    </div>
+
+    <!-- Header: Minimalist Branding & Model -->
+    <header class="aui-header">
+        <div class="brand-identity">
+            <div class="logo-wrapper">
+                <a href="https://shensist.top/" target="_blank">
+                    <img src="../assets/logo_ts.webp" alt="Shensist Logo" class="top-logo">
+                </a>
+            </div>
+            <div class="brand-text">
+                <h1 class="main-title">《碗底青》</h1>
+                <div class="sub-title">全息世界多模态智能体</div>
+            </div>
+        </div>
+        <div class="header-right">
+            <select id="model-select" class="cyber-select">
+                <option value="gpt-5">OpenAI GPT-5 (Omni-Core)</option>
+                <option value="claude-3.7-opus">Anthropic Claude 3.7 (Opus)</option>
+                <option value="gemini-3.1-pro">Google Gemini 3.1 (Pro)</option>
+                <option value="llama-4-400b">Meta Llama 4 (400B Open)</option>
+                <option value="deepseek-v4">DeepSeek V4 (MoE-Chat)</option>
+                <option value="qwen-3-max">Alibaba Qwen 3 (Max)</option>
+                <option value="ernie-5.0">Baidu ERNIE 5.0 (Titan)</option>
+                <option value="kimi-2.0">Moonshot Kimi 2.0 (2M Context)</option>
+                <option value="grok-3">xAI Grok 3 (Real-Time)</option>
+                <option value="shensist-core-v5" selected>SHENSIST-CORE-V5 (1050Ti Local)</option>
+            </select>
+            <input type="password" id="api-key" class="cyber-input" placeholder="输入灵境密钥 (API Key)...">
+        </div>
+    </header>
+
+    <!-- Central Matrix Column -->
+    <main class="aui-dock">
+        <div class="chat-terminal">
+            <!-- 2. Chat History (Expanded Space) -->
+            <div id="chat-history" class="chat-history">
+                <div class="message system">连接已建立... 碗底青灵境已激活... 小青正在感知您的存在...</div>
+            </div>
+
+            <!-- 3. Bottom Controls (Anchored to bottom) -->
+            <div class="bottom-interaction-zone">
+                <!-- Command Tip Box (Flow-based) -->
+                <div class="command-tip">
+                    <div class="tip-header">// 灵境控制口令:</div>
+                    <div class="tip-body">
+                        1-小说 | 2-歌词 | 3-演员 | 4-视频
+                    </div>
+                </div>
+
+                <div class="input-layer">
+                    <div class="sensor-mini">
+                        <button id="voice-call-btn" class="mini-btn" title="语音通话">🎤</button>
+                        <button id="video-vision-btn" class="mini-btn" title="视觉感知">👁️</button>
+                        <button id="voice-command-toggle" class="mini-btn" title="语音指令 (1-4)">🛰️</button>
+                    </div>
+                    <textarea id="user-input" placeholder="输入指令或呼唤她的名字..."></textarea>
+                    <button id="send-btn">发送 // EXE</button>
+                </div>
+                <div class="command-buttons">
+                    <button class="aui-btn" onclick="openModal('novel')">1-小说 (Novel)</button>
+                    <button class="aui-btn" onclick="openModal('lyrics')">2-歌词 (Lyrics)</button>
+                    <button class="aui-btn" onclick="openModal('cast')">3-演员 (Cast)</button>
+                    <button class="aui-btn" onclick="openModal('video')">4-视频 (Video)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Legal Footer (Copyright) -->
+        <footer class="legal-footer">© 2026 SHENSIST.TOP | 算法困不住灵魂，一碗凉水饺击穿赛博神坛. All Rights Reserved.</footer>
+    </main>
+
+    <!-- MODAL SYSTEM -->
+
+    <!-- 1. Text Modal (Novel/Lyrics) -->
+    <div id="text-modal" class="modal">
+        <div class="modal-window">
+            <div class="modal-header">
+                <span id="text-modal-title">// DATA_EXTRACT</span>
+                <span class="close-btn" onclick="closeAllModals()">&times;</span>
+            </div>
+            <div class="modal-body scrollable">
+                <pre id="modal-text"></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Cast Modal -->
+    <div id="cast-modal" class="modal">
+        <div class="modal-window wide">
+            <div class="modal-header">
+                <span>// CAST_EXHIBIT_MATRIX</span>
+                <span class="close-btn" onclick="closeAllModals()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="cast-grid">
+                    <div class="cast-card">
+                        <img src="../assets/（小青蛇精）@mmmmmmmm1.verdantnam.png">
+                        <div class="info">
+                            <h3>小青</h3>
+                            <p>V-SOUL-01</p>
+                        </div>
+                    </div>
+                    <div class="cast-card">
+                        <img src="../assets/（女主）@christinamontoya.png">
+                        <div class="info">
+                            <h3>青蛇</h3>
+                            <p>V-SOUL-02</p>
+                        </div>
+                    </div>
+                    <div class="cast-card">
+                        <img src="../assets/（男主）@mmmmmmmm1r.png">
+                        <div class="info">
+                            <h3>张鹏</h3>
+                            <p>M-USER-01</p>
+                        </div>
+                    </div>
+                    <div class="cast-card">
+                        <img src="../assets/（恶霸）@mmmmmmmm1.ironviperh.png">
+                        <div class="info">
+                            <h3>保安队长</h3>
+                            <p>G-ENFR-09</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Video Modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-window video-win">
+            <div class="modal-header">
+                <span>// VIDEO_EXHIBIT</span>
+                <div class="modal-controls">
+                    <button class="switch-btn" onclick="switchVideo()">更换视频 (SWITCH)</button>
+                    <span class="close-btn" onclick="closeAllModals()">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body no-padding">
+                <div class="player-container">
+                    <iframe id="main-player"
+                        src="https://player.bilibili.com/player.html?bvid=BV1GRA5zXEii&page=1&high_quality=1&danmaku=1"
+                        scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/shensist_data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
